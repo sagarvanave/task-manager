@@ -1,13 +1,23 @@
 //Basic CRUD check
 
-const mongodb = require('mongodb')
-const MongoClient = mongodb.MongoClient
+// const mongodb = require('mongodb')
+// const MongoClient = mongodb.MongoClient
+// const ObjectID = mongodb.ObjectID
+
+//Object destructing
+
+const { MongoClient, ObjectID } = require('mongodb')
 
 const connectionURL = 'mongodb://127.0.0.1:27017'
 const databaseName = 'task-manager'
 
+// const id=new ObjectID()
+// console.log(id.id.length);
+
+// console.log(id.getTimestamp())
+
 MongoClient.connect(connectionURL, { useUnifiedTopology: true }, (error, client) => {
-    if(error){
+    if (error) {
         return console.log("Unable to connect database")
     }
     console.log("Connected correctly!")
@@ -45,22 +55,33 @@ MongoClient.connect(connectionURL, { useUnifiedTopology: true }, (error, client)
     //     })
 
 
-    db.collection('tasks').insertMany([
-        {
-            description:"Read a book",
-            completed:false
-        },{
-            description:"Charge the mobile",
-            completed:true
-        },{
-            description:"Watch a movie",
-            completed:true
-        }
-    ],(error,result)=>{
+    // db.collection('tasks').insertMany([
+    //     {
+    //         description:"Read a book",
+    //         completed:false
+    //     },{
+    //         description:"Charge the mobile",
+    //         completed:true
+    //     },{
+    //         description:"Watch a movie",
+    //         completed:true
+    //     }
+    // ],(error,result)=>{
+    //     if(error){
+    //         return console.log("Unable to insert records")
+    //     }
+
+    //     console.log(result.ops)
+    // })
+
+
+    //Fetch Data from database
+
+    db.collection('users').findOne({ name: 'sagar'},(error,user)=>{
         if(error){
-            return console.log("Unable to insert records")
+            return console.log("Unable to fetch")
         }
-        
-        console.log(result.ops)
+        console.log(user)
     })
+
 })
