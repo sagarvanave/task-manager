@@ -77,7 +77,7 @@ MongoClient.connect(connectionURL, { useUnifiedTopology: true }, (error, client)
 
     //Fetch Data from database
 
-    db.collection('users').findOne({ name: 'sagar'},(error,user)=>{
+    db.collection('users').findOne({ _id:new ObjectID('60b36f2db8e7ef1d670413f9')},(error,user)=>{
         if(error){
             return console.log("Unable to fetch")
         }
